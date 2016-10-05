@@ -1,0 +1,75 @@
+<plugin xmlns="http://apache.org/cordova/ns/plugins/1.0"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    id="com.uniware.BraintreePlugin"
+    version="1.0.0">
+
+    <name>Braintree PhoneGap</name>
+    <description>Braintree PhoneGap Plugin for Android and iOS.</description>
+    <author>Stephen Hewison</author>
+    <license>MIT</license>
+    <keywords>Braintree</keywords>
+    <repo></repo>
+    <issue></issue>
+
+    <engines>
+        <engine name="cordova" version=">=3.3.0"/>
+    </engines>
+
+    <js-module src="www/BraintreePlugin.js" name="BraintreePlugin">
+        <clobbers target="braintree" />
+    </js-module>
+
+    <!-- ios -->
+    <platform name="ios">
+
+        <config-file target="config.xml" parent="/*">
+            <feature name="BraintreePlugin">
+                <param name="ios-package" value="BraintreePlugin" />
+            </feature>
+        </config-file>
+
+        <header-file src="src/ios/BraintreePlugin.h"/>
+        <source-file src="src/ios/BraintreePlugin.m"/>
+
+    </platform>
+
+    <!-- android -->
+    <platform name="android">
+
+      <framework src="com.braintreepayments.api:braintree:2.+" />
+      <framework src="com.braintreepayemnts.api:drop-in:2.+" />
+      <framework src="com.braintreepayments.api:dataCollector:2.+" />
+
+        <config-file target="res/xml/config.xml" parent="/*">
+            <feature name="BraintreePlugin">
+                <param name="android-package" value="com.uniware.BraintreePlugin" />
+            </feature>
+        </config-file>
+
+        <source-file src="src/android/BraintreePlugin.java" target-dir="src/com/uniware" />
+
+        <config-file target="AndroidManifest.xml" parent="/manifest">
+            <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+            <uses-permission android:name="android.permission.ACCESS_WIFI_STATE"/>
+            <uses-permission android:name="android.permission.INTERNET"/>
+        </config-file>
+
+        <config-file target="AndroidManifest.xml" parent="/manifest/application">
+            <activity android:name="com.braintreepayments.api.BraintreePaymentActivity" />
+        </config-file>
+
+        <config-file target="AndroidManifest.xml" parent="/manifest/application">
+          <activity android:name="com.braintreepayments.api.BraintreeBrowserSwitchActivity"
+                android:launchMode="singleTask"
+                android:theme="@android:style/Theme.Translucent.NoTitleBar">
+                <intent-filter>
+                  <action android:name="android.intent.action.VIEW" />
+                  <category android:name="android.intent.category.DEFAULT" />
+                  <category android:name="android.intent.category.BROWSABLE" />
+                  <data android:scheme="com.uniware.braintree" />
+                </intent-filter>
+              </activity>
+        </config-file>
+        
+    </platform>
+</plugin>
