@@ -17,6 +17,8 @@
         <clobbers target="braintree" />
     </js-module>
 
+    <dependency id="cordova-plugin-cocoapod-support"/>
+
     <!-- ios -->
     <platform name="ios">
 
