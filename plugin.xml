@@ -20,6 +20,10 @@
     <!-- ios -->
     <platform name="ios">
 
+        <pods-config uses-frameworks="true" />
+
+        <pod id="Braintree" />
+
         <config-file target="config.xml" parent="/*">
             <feature name="BraintreePlugin">
                 <param name="ios-package" value="BraintreePlugin" />
