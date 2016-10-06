@@ -1,5 +1,5 @@
 <plugin xmlns="http://apache.org/cordova/ns/plugins/1.0" xmlns:android="http://schemas.android.com/apk/res/android" id="com.uniware.BraintreePlugin"
-    version="1.0.0">
+    version="1.0.1">
 
     <name>Braintree PhoneGap</name>
     <description>Braintree PhoneGap Plugin for Android and iOS.</description>
@@ -34,12 +34,6 @@
     <!-- android -->
     <platform name="android">
 
-        <framework src="src/android/plugin.gradle" custom="true" type="gradleReference" />
-
-        <framework src="com.braintreepayments.api:braintree:2.1.2" />
-        <framework src="com.braintreepayemnts.api:drop-in:2.1.2" />
-        <framework src="com.braintreepayments.api:dataCollector:2.1.2" />
-
         <config-file target="res/xml/config.xml" parent="/*">
             <feature name="BraintreePlugin">
                 <param name="android-package" value="com.uniware.BraintreePlugin" />
@@ -68,6 +62,8 @@
                 </intent-filter>
             </activity>
         </config-file>
+
+        <framework src="src/android/plugin.gradle" custom="true" type="gradleReference" />
 
     </platform>
 </plugin>
