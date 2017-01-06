@@ -1,4 +1,7 @@
-<plugin xmlns="http://apache.org/cordova/ns/plugins/1.0" xmlns:android="http://schemas.android.com/apk/res/android" id="com.uniware.BraintreePlugin"
+<plugin
+    xmlns="http://apache.org/cordova/ns/plugins/1.0"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    id="com.uniware.BraintreePlugin"
     version="1.0.1">
 
     <name>Braintree PhoneGap</name>
@@ -6,12 +9,8 @@
     <author>Stephen Hewison</author>
     <license>MIT</license>
     <keywords>Braintree</keywords>
-    <repo></repo>
-    <issue></issue>
 
-    <engines>
-        <engine name="cordova" version=">=3.3.0" />
-    </engines>
+    <hook type="after_plugin_install" src="hooks/add_embedded_ios_frameworks.js" />
 
     <js-module src="www/BraintreePlugin.js" name="BraintreePlugin">
         <clobbers target="braintree" />
@@ -28,6 +27,15 @@
 
         <header-file src="src/ios/BraintreePlugin.h" />
         <source-file src="src/ios/BraintreePlugin.m" />
+
+        <framework src="lib/ios/BraintreeVenmo.framework" custom="true" />
+        <framework src="lib/ios/BraintreeUI.framework" custom="true" />
+        <framework src="lib/ios/BraintreePayPal.framework" custom="true" />
+        <framework src="lib/ios/BraintreeDataCollector.framework" custom="true" />
+        <framework src="lib/ios/BraintreeCore.framework" custom="true" />
+        <framework src="lib/ios/BraintreeCard.framework" custom="true" />
+        <framework src="lib/ios/BraintreeApplePay.framework" custom="true" />
+        <framework src="lib/ios/Braintree3DSecure.framework" custom="true" />
 
     </platform>
 
