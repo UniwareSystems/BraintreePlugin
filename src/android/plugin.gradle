@@ -4,7 +4,6 @@ repositories {
 }
 
 dependencies {
-    compile 'com.braintreepayments.api:braintree:2.1.2'
-    compile 'com.braintreepayments.api:drop-in:2.1.2'
-    compile 'com.braintreepayments.api:data-collector:2.1.2'
+    compile 'com.braintreepayments.api:braintree:2.+'
+    compile 'com.braintreepayments.api:data-collector:2.+'
 }

@@ -27,11 +27,11 @@ public class BraintreePlugin extends CordovaPlugin implements PaymentMethodNonce
 	private BraintreeFragment mBraintreeFragment = null;
 	protected static final int REQUEST_CODE = 100;
 
-	@Override
-	public void onActivityResult(int requestCode, int resultCode, Intent intent)
-	{
-		super.onActivityResult(requestCode, resultCode, intent);
-	}
+	// @Override
+	// public void onActivityResult(int requestCode, int resultCode, Intent intent)
+	// {
+	// 	super.onActivityResult(requestCode, resultCode, intent);
+	// }
 
 	@Override
 	public boolean execute(String action, JSONArray args, CallbackContext callbackContext) throws JSONException
