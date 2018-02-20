@@ -14,6 +14,9 @@ var BraintreePlugin = /** @class */ (function () {
 var Cards = /** @class */ (function () {
   function Cards() {
   }
+  Cards.prototype.tokeniseCard = function (cardNumber, expiry, cvv, onSuccess, onFailed) {
+      cordova.exec(onSuccess, onFailed, "BraintreePlugin", "cardTokenise", [cardNumber, expiry, cvv]);
+  };
   return Cards;
 }());
 var PayPal = /** @class */ (function () {

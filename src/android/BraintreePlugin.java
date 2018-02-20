@@ -32,6 +32,8 @@ public class BraintreePlugin extends CordovaPlugin implements PaymentMethodNonce
 			new PayPalProcessor(_braintreeFragment).processImmediate(args);
 		} else if (action.equals("paypalProcessVaulted")) {
 			new PayPalProcessor(_braintreeFragment).processVaulted(args);
+		} else if (action.equals("cardTokenise")) {
+			new CardProcessor(_braintreeFragment).tokeniseCard(args.getString(0), args.getString(1), args.getString(2));
 		} else {
 			return false;
 		}
@@ -70,8 +72,8 @@ public class BraintreePlugin extends CordovaPlugin implements PaymentMethodNonce
 
 			json.put("nonce", paymentMethodNonce.getNonce().toString());
 			json.put("payerId", pp.getPayerId().toString());
-			json.put("payerId", pp.getFirstName().toString());
-			json.put("payerId", pp.getLastName().toString());
+			json.put("forename", pp.getFirstName().toString());
+			json.put("surname", pp.getLastName().toString());
 			json.put("deviceData", DataCollector.collectDeviceData(_braintreeFragment));
 
 			PluginResult result = new PluginResult(PluginResult.Status.OK, json);

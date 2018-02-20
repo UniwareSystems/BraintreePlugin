@@ -9,7 +9,7 @@ import org.json.JSONException;
 
 public class PayPalProcessor {
 
-    private BraintreeFragment _braintreeFragment;
+    private final BraintreeFragment _braintreeFragment;
 
     public PayPalProcessor(BraintreeFragment bf) {
         _braintreeFragment = bf;

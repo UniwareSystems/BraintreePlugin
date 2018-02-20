@@ -13,7 +13,9 @@ class BraintreePlugin {
 }
 
 class Cards {
-
+    public tokeniseCard(cardNumber: string, expiry: string, cvv: string, onSuccess: Function, onFailed: Function) {
+        cordova.exec(onSuccess, onFailed, "BraintreePlugin", "cardTokenise", [cardNumber, expiry, cvv]);
+    }
 }
 
 class PayPal {
