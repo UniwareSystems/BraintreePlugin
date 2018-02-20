@@ -2,7 +2,7 @@
     xmlns="http://apache.org/cordova/ns/plugins/1.0"
     xmlns:android="http://schemas.android.com/apk/res/android"
     id="com.uniware.BraintreePlugin"
-    version="1.0.4">
+    version="1.0.5">
 
     <name>Braintree PhoneGap</name>
     <description>Braintree PhoneGap Plugin for Android and iOS.</description>
@@ -66,7 +66,7 @@
                     <action android:name="android.intent.action.VIEW" />
                     <category android:name="android.intent.category.DEFAULT" />
                     <category android:name="android.intent.category.BROWSABLE" />
-                    <data android:scheme="com.upaychilli.upaychilli.payments.braintree" />
+                    <data android:scheme="com.upaychilli.upaychilli.braintree" />
                 </intent-filter>
             </activity>
         </config-file>
