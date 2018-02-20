@@ -2,7 +2,7 @@
     xmlns="http://apache.org/cordova/ns/plugins/1.0"
     xmlns:android="http://schemas.android.com/apk/res/android"
     id="com.uniware.BraintreePlugin"
-    version="1.0.1">
+    version="1.0.2">
 
     <name>Braintree PhoneGap</name>
     <description>Braintree PhoneGap Plugin for Android and iOS.</description>
