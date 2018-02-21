@@ -42,7 +42,7 @@
     <!-- android -->
     <platform name="android">
 
-        <config-file target="app/src/main/res/xml/config.xml" parent="/*">
+        <config-file target="res/xml/config.xml" parent="/*">
             <feature name="BraintreePlugin">
                 <param name="android-package" value="com.uniware.BraintreePlugin" />
             </feature>
@@ -53,13 +53,13 @@
         <source-file src="src/android/PayPalProcessor.java" target-dir="src/com/uniware" />
         <source-file src="src/android/GooglePayProcessor.java" target-dir="src/com/uniware" />
 
-        <config-file target="app/src/main/AndroidManifest.xml" parent="/manifest">
+        <config-file target="AndroidManifest.xml" parent="/manifest">
             <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
             <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
             <uses-permission android:name="android.permission.INTERNET" />
         </config-file>
 
-        <config-file target="app/src/main/AndroidManifest.xml" parent="/manifest/application">
+        <config-file target="AndroidManifest.xml" parent="/manifest/application">
             <activity android:name="com.braintreepayments.api.BraintreePaymentActivity" />
             <activity android:name="com.braintreepayments.api.BraintreeBrowserSwitchActivity" android:launchMode="singleTask" android:theme="@android:style/Theme.Translucent.NoTitleBar">
                 <intent-filter>
