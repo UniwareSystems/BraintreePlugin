@@ -11,6 +11,7 @@ import com.braintreepayments.api.BraintreeFragment;
 import com.braintreepayments.api.DataCollector;
 import com.braintreepayments.api.exceptions.InvalidArgumentException;
 import com.braintreepayments.api.interfaces.PaymentMethodNonceCreatedListener;
+import com.braintreepayments.api.models.CardNonce;
 import com.braintreepayments.api.models.PayPalAccountNonce;
 import com.braintreepayments.api.models.PaymentMethodNonce;
 
@@ -26,7 +27,9 @@ public class BraintreePlugin extends CordovaPlugin implements PaymentMethodNonce
 		_callbackContext = callbackContext;
 		_activity = this.cordova.getActivity();
 
-		if (action.equals("initWithSettings")) {
+		if (action.equals("dropInUI")) {
+			startDropIn();
+		} else if (action.equals("initWithSettings")) {
 			this.init(args);
 		} else if (action.equals("paypalProcessImmediate")) {
 			new PayPalProcessor(_braintreeFragment).processImmediate(args);
@@ -37,8 +40,20 @@ public class BraintreePlugin extends CordovaPlugin implements PaymentMethodNonce
 		} else {
 			return false;
 		}
-
+		
 		return true;
+	}
+
+	private void startDropIn() {
+		cordova.getThreadPool().execute(new Runnable() {
+            @Override
+            public void run() {
+
+                Intent intent = new Intent(this.activity, BraintreePaymentActivity.class);
+				intent.putExtra(BraintreePaymentActivity.EXTRA_CLIENT_TOKEN, clientToken);
+				this.cordova.startActivityForResult(this, intent, DROP_IN_REQUEST);
+            }
+        });
 	}
 
 	private void init(JSONArray args) {
@@ -66,19 +81,23 @@ public class BraintreePlugin extends CordovaPlugin implements PaymentMethodNonce
 	@Override
 	public void onPaymentMethodNonceCreated(PaymentMethodNonce paymentMethodNonce) {
 		try {
-			PayPalAccountNonce pp = (PayPalAccountNonce) paymentMethodNonce;
-
 			JSONObject json = new JSONObject();
 
 			json.put("nonce", paymentMethodNonce.getNonce().toString());
-			json.put("payerId", pp.getPayerId().toString());
-			json.put("forename", pp.getFirstName().toString());
-			json.put("surname", pp.getLastName().toString());
 			json.put("deviceData", DataCollector.collectDeviceData(_braintreeFragment));
 
-			PluginResult result = new PluginResult(PluginResult.Status.OK, json);
+			if (paymentMethodNonce instanceof PayPalAccountNonce) {
+				PayPalAccountNonce pp = (PayPalAccountNonce) paymentMethodNonce;
+				json.put("payerId", pp.getPayerId().toString());
+				json.put("forename", pp.getFirstName().toString());
+				json.put("surname", pp.getLastName().toString());
+			} else if (paymentMethodNonce instanceof CardNonce) {
+				CardNonce c = (CardNonce) paymentMethodNonce;
+				json.put("lastFour", c.getLastFour().toString());
+				json.put("cardType", c.getCardType().toString());
+			}
 
-			_callbackContext.sendPluginResult(result);
+			_callbackContext.sendPluginResult(new PluginResult(PluginResult.Status.OK, json));
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
