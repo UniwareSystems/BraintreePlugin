@@ -1,6 +1,6 @@
 {
   "name": "cordova-braintree-paypal",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "A Cordova plugin for the Braintree mobile payment processing SDK.",
   "cordova": {
     "id": "cordova-braintree-paypal",

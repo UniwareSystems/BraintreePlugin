@@ -2,7 +2,7 @@
     xmlns="http://apache.org/cordova/ns/plugins/1.0"
     xmlns:android="http://schemas.android.com/apk/res/android"
     id="cordova-braintree-paypal"
-    version="1.0.2">
+    version="1.0.3">
 
     <name>Cordova Braintree PayPal</name>
     <description>Braintree PhoneGap Plugin for Android and iOS.</description>
@@ -12,9 +12,7 @@
 
     <hook type="after_plugin_install" src="hooks/add_embedded_ios_frameworks.js" />
 
-    <js-module src="www/BraintreePlugin.js" name="BraintreePlugin">
-        <clobbers target="braintree" />
-    </js-module>
+    <js-module src="www/cordova-braintree-paypal.js" name="cordova-braintree-paypal"></js-module>
 
     <!-- ios -->
     <platform name="ios">
