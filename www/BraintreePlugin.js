@@ -10,36 +10,30 @@
 
 // constructor
 //
-function BraintreePlugin () {
+function Plugin () {
 	console.log('Construct');
 }
 
 // init with environment variables
 //
-BraintreePlugin.prototype.init = function(apiKey, successCallback, failureCallback)
+Plugin.prototype.init = function(apiKey, successCallback, failureCallback)
 {
-    console.log('BrainTreePayment.init start');
-    cordova.exec(successCallback, failureCallback, "BraintreePlugin", "initWithSettings", [apiKey])
-    console.log('BrainTreePayment.init done');
+  cordova.exec(successCallback, failureCallback, "BraintreePlugin", "initWithSettings", [apiKey])
 };
 
-BraintreePlugin.prototype.processImmediate = function(amount, currency, env, successCallback, failureCallback)
+Plugin.prototype.processImmediate = function(amount, currency, env, successCallback, failureCallback)
 {
-  console.log('BrainTreePayment.getCardInfoz start');
   cordova.exec(successCallback, failureCallback, "BraintreePlugin", "processImmediate", [amount, currency, env])
-  console.log('BrainTreePayment.getCardInfoz done');
 };
 
-BraintreePlugin.prototype.processVaulted = function(env, successCallback, failureCallback)
+Plugin.prototype.processVaulted = function(env, successCallback, failureCallback)
 {
-  console.log('BrainTreePayment.getCardInfoz start');
   cordova.exec(successCallback, failureCallback, "BraintreePlugin", "processVaulted", [env])
-  console.log('BrainTreePayment.getCardInfoz done');
 };
 
 // Dismisses Braintree dialog window if developer no more needs it
 //
-BraintreePlugin.prototype.dismiss = function(successCallback, failureCallback)
+Plugin.prototype.dismiss = function(successCallback, failureCallback)
 {
 	cordova.exec(successCallback, failureCallback, "BraintreePlugin", "dismiss", [])
   console.log('Dismiss');
@@ -54,6 +48,6 @@ cordova.addConstructor(function()
     window.plugins = {};
   
   if (!window.plugins.braintreeApp)
-    window.plugins.braintreeApp = new BraintreePlugin();
+    window.plugins.braintreeApp = new Plugin();
   
 });
